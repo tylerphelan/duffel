@@ -1,4 +1,4 @@
-module github.com/airheartdev/duffel
+module github.com/tylerphelan/duffel
 
 go 1.18
 

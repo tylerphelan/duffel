@@ -9,8 +9,8 @@ import (
 	"log"
 	"os"
 
-	"github.com/airheartdev/duffel"
 	"github.com/gocarina/gocsv"
+	"github.com/tylerphelan/duffel"
 )
 
 func main() {

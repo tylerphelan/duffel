@@ -168,9 +168,15 @@ func decodeError(response *http.Response) error {
 	notRetryable := strings.HasPrefix(response.Request.URL.Path, "/air/orders") &&
 		response.StatusCode == http.StatusInternalServerError
 
+	rl, err := parseRateLimit(response)
+	if err != nil {
+		return err
+	}
+
 	derr := &DuffelError{
 		StatusCode: response.StatusCode,
 		Retryable:  !notRetryable,
+		RateLimit:  rl,
 	}
 	err = json.NewDecoder(reader).Decode(derr)
 	if err != nil {

@@ -11,7 +11,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/airheartdev/duffel"
+	"github.com/tylerphelan/duffel"
 )
 
 func main() {

@@ -144,10 +144,11 @@ func ErrIsRetryable(err error) bool {
 }
 
 type DuffelError struct {
-	Meta       ErrorMeta `json:"meta"`
-	Errors     []Error   `json:"errors"`
-	StatusCode int       `json:"-"`
-	Retryable  bool      `json:"-"`
+	Meta       ErrorMeta  `json:"meta"`
+	Errors     []Error    `json:"errors"`
+	StatusCode int        `json:"-"`
+	Retryable  bool       `json:"-"`
+	RateLimit  *RateLimit `json:"-"`
 }
 
 func (e *DuffelError) Error() string {
