@@ -58,7 +58,7 @@ func (c *client[Req, Resp]) Do(ctx context.Context, resourceName string, method 
 	c.limiter.SetBurst(rateLimit.Limit)
 	c.limiter.SetLimit(rate.Every(rateLimit.Period))
 
-	if rateLimit.Remaining == 0 || resp.StatusCode == http.StatusTooManyRequests {
+	if rateLimit.Remaining < 0 || resp.StatusCode == http.StatusTooManyRequests {
 		return nil, fmt.Errorf("rate limit exceeded, reset in: %s, current limit: %d", rateLimit.Period.String(), rateLimit.Limit)
 	}
 	return resp, nil
