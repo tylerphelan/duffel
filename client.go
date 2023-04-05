@@ -168,10 +168,8 @@ func decodeError(response *http.Response) error {
 	notRetryable := strings.HasPrefix(response.Request.URL.Path, "/air/orders") &&
 		response.StatusCode == http.StatusInternalServerError
 
-	rl, err := parseRateLimit(response)
-	if err != nil {
-		return err
-	}
+	// Do not error if we fail to parse rate limit headers, rl will be nil
+	rl, _ := parseRateLimit(response)
 
 	derr := &DuffelError{
 		StatusCode: response.StatusCode,
