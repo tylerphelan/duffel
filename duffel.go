@@ -288,7 +288,7 @@ const (
 
 func New(apiToken string, opts ...Option) Duffel {
 	options := &Options{
-		Version:   "v1",
+		Version:   "v2",
 		UserAgent: userAgentString,
 		Host:      defaultHost,
 		HttpDoer:  http.DefaultClient,
